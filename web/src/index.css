@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-[#FFF8F2] text-carbon-800 font-sans antialiased; }
+  .num { font-variant-numeric: tabular-nums; }
+  input, select, textarea { @apply text-carbon-800; }
+}
+@layer components {
+  .card { @apply bg-white rounded-2xl shadow-card border border-carbon-100/70; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-jhs-500 text-white hover:bg-jhs-600 shadow-pop; }
+  .btn-sec { @apply btn bg-white text-carbon-700 border border-carbon-200 hover:bg-carbon-50; }
+  .btn-ghost { @apply btn text-carbon-600 hover:bg-carbon-100; }
+  .btn-big { @apply w-full py-4 text-lg rounded-2xl; }
+  .input { @apply w-full rounded-xl border border-carbon-200 bg-white px-3.5 py-2.5 outline-none focus:border-jhs-400 focus:ring-4 focus:ring-jhs-100 transition; }
+  .input-big { @apply input text-2xl font-bold py-4 num; }
+  .label { @apply block text-xs font-bold uppercase tracking-wide text-carbon-400 mb-1.5; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold; }
+  .th { @apply px-3 py-2.5 text-left text-[11px] font-bold uppercase tracking-wide text-carbon-400 whitespace-nowrap; }
+  .td { @apply px-3 py-2.5 whitespace-nowrap num; }
+}
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .card { box-shadow: none; border-color: #ddd; break-inside: avoid; }
+  main { padding: 0 !important; margin: 0 !important; }
+}
