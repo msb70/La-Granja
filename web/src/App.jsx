@@ -10,6 +10,9 @@ import AperturaLote from './pages/campo/AperturaLote.jsx';
 import DespachoCampo from './pages/campo/DespachoCampo.jsx';
 import Sincronizar from './pages/campo/Sincronizar.jsx';
 import Perfil from './pages/campo/Perfil.jsx';
+import IrGalpon from './pages/campo/IrGalpon.jsx';
+import Escanear from './pages/campo/Escanear.jsx';
+import CodigosQR from './pages/panel/CodigosQR.jsx';
 import PanelLayout from './pages/panel/PanelLayout.jsx';
 import Dashboard from './pages/panel/Dashboard.jsx';
 import Lotes from './pages/panel/Lotes.jsx';
@@ -31,6 +34,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<Navigate to={esCampo(user) ? '/campo' : '/panel'} replace />} />
+        <Route path="/g/:galponId" element={<CampoLayout />}><Route index element={<IrGalpon />} /></Route>
         <Route path="/campo" element={<CampoLayout />}>
           <Route index element={<CampoInicio />} />
           <Route path="lote/:id" element={<LoteCampo />} />
@@ -39,6 +43,7 @@ export default function App() {
           <Route path="abrir/:galponId" element={<AperturaLote />} />
           <Route path="sync" element={<Sincronizar />} />
           <Route path="perfil" element={<Perfil />} />
+          <Route path="escanear" element={<Escanear />} />
         </Route>
         <Route path="/panel" element={user.rol === 'galponero' ? <Navigate to="/campo" /> : <PanelLayout />}>
           <Route index element={<Dashboard />} />
@@ -50,6 +55,7 @@ export default function App() {
           <Route path="discrepancias" element={<Discrepancias />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="configuracion" element={<Configuracion />} />
+          <Route path="qr" element={<CodigosQR />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -43,7 +43,7 @@ export default function Estandares() {
       <div className="card p-5">
         {meta.por_validar && <div className="rounded-xl bg-desc-50 text-desc-700 p-3 text-sm font-semibold flex gap-2 mb-4"><AlertCircle size={18} className="shrink-0" />Valores por validar. Reemplácelos por la tabla oficial del proveedor genético que usa el cliente.</div>}
         <label className="block mb-4"><span className="label">Fuente</span><input className="input" value={meta.fuente || ''} disabled={!editable} onChange={e => setMeta({ ...meta, fuente: e.target.value })} /></label>
-        <table className="w-full text-sm max-w-xl">
+        <div className="overflow-x-auto -mx-1 px-1"><table className="w-full text-sm max-w-xl min-w-[320px]">
           <thead><tr><th className="th">Día</th><th className="th">Peso estándar (g)</th><th className="th">FCR estándar acumulado</th><th className="th"></th></tr></thead>
           <tbody>{puntos.map((p, i) => (
             <tr key={i} className="border-t border-carbon-100">
@@ -51,7 +51,7 @@ export default function Estandares() {
               <td>{editable && <button className="btn-ghost !p-1.5 text-mort-600" onClick={() => setPuntos(puntos.filter((_, j) => j !== i))}><Trash2 size={16} /></button>}</td>
             </tr>))}
           </tbody>
-        </table>
+        </table></div>
         {editable && <div className="flex flex-wrap gap-2 mt-4">
           <button className="btn-sec" onClick={() => setPuntos([...puntos, { dia: '', peso_g: '', fcr: '' }])}><Plus size={17} />Agregar día</button>
           <label className="flex items-center gap-2 text-sm font-semibold px-3"><input type="checkbox" checked={!!meta.por_validar} onChange={e => setMeta({ ...meta, por_validar: e.target.checked })} />Por validar</label>

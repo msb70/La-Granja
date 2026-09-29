@@ -13,7 +13,7 @@ export default function Usuarios() {
   const [roles, setRoles] = useState({});
   const [granjas, setGranjas] = useState([]);
   const [edit, setEdit] = useState(null);
-  const cargar = () => api('/usuarios').then(setRows);
+  const cargar = () => api('/usuarios').then(setRows).catch(e => { aviso(e.message, 'error'); setRows([]); });
   useEffect(() => { cargar(); api('/roles').then(setRoles); api('/granjas').then(setGranjas); }, []);
   if (!rows) return <Spinner />;
   const nombreGranja = (id) => granjas.find(g => g.id === id)?.nombre;

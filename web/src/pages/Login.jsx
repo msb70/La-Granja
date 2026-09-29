@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Eye, EyeOff, LogIn, Egg, Wheat, Scale, CloudOff } from 'lucide-react';
 import { useApp } from '../lib/store.jsx';
 import { Logo } from '../components/ui.jsx';
@@ -7,6 +7,7 @@ import { Logo } from '../components/ui.jsx';
 export default function Login() {
   const { login, aviso } = useApp();
   const nav = useNavigate();
+  const loc = useLocation();
   const [u, setU] = useState('');
   const [p, setP] = useState('');
   const [ver, setVer] = useState(false);
@@ -15,7 +16,7 @@ export default function Login() {
   const entrar = async (e) => {
     e.preventDefault();
     setEnviando(true);
-    try { await login(u, p); nav('/', { replace: true }); }
+    try { await login(u, p); nav(loc.pathname.startsWith('/g/') ? loc.pathname : '/', { replace: true }); }
     catch (err) { aviso(err.message, 'error'); }
     finally { setEnviando(false); }
   };

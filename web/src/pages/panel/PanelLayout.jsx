@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Outlet, Link } from 'react-router-dom';
-import { LayoutDashboard, Layers, Warehouse, LineChart, Truck, Scale, Users, Settings, Smartphone, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Layers, Warehouse, LineChart, Truck, Scale, Users, Settings, Smartphone, LogOut, Menu, X, QrCode } from 'lucide-react';
 import { useApp, puede } from '../../lib/store.jsx';
 import { Logo, EstadoConexion } from '../../components/ui.jsx';
 
@@ -11,6 +11,7 @@ const ITEMS = [
   { to: '/panel/estandares', t: 'Estándar genético', I: LineChart, c: 'text-amb-500' },
   { to: '/panel/despachos', t: 'Despachos y planta', I: Truck, c: 'text-desp-500' },
   { to: '/panel/discrepancias', t: 'Conciliación', I: Scale, c: 'text-mort-500' },
+  { to: '/panel/qr', t: 'Códigos QR', I: QrCode, c: 'text-jhs-300' },
   { to: '/panel/usuarios', t: 'Usuarios', I: Users, c: 'text-desc-500', roles: ['admin'] },
   { to: '/panel/configuracion', t: 'Configuración', I: Settings, c: 'text-carbon-300', roles: ['admin'] },
 ];

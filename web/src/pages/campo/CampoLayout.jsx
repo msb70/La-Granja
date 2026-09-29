@@ -1,5 +1,5 @@
 import { NavLink, Outlet, Link } from 'react-router-dom';
-import { Home, RefreshCw, User, LayoutDashboard } from 'lucide-react';
+import { Home, RefreshCw, User, LayoutDashboard, ScanLine } from 'lucide-react';
 import { useApp, puede } from '../../lib/store.jsx';
 import { Logo, EstadoConexion } from '../../components/ui.jsx';
 
@@ -8,7 +8,7 @@ export default function CampoLayout() {
   const pend = outbox.length;
   const tab = ({ isActive }) => `flex flex-col items-center gap-0.5 py-2 px-3 rounded-2xl text-[11px] font-bold transition ${isActive ? 'text-jhs-600 bg-jhs-50' : 'text-carbon-400'}`;
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen pb-28">
       <header className="sticky top-0 z-30 bg-jhs-500 text-white shadow-lg" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         <div className="max-w-2xl mx-auto flex items-center justify-between px-4 h-14">
           <Link to="/campo" className="flex items-center gap-2.5">
@@ -22,6 +22,9 @@ export default function CampoLayout() {
       <nav className="fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur border-t border-carbon-100 no-print" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <div className="max-w-2xl mx-auto flex justify-around py-1.5">
           <NavLink to="/campo" end className={tab}><Home size={22} />Inicio</NavLink>
+          <NavLink to="/campo/escanear" className="-mt-7 flex flex-col items-center gap-0.5 text-[11px] font-bold text-jhs-600" aria-label="Escanear QR del galpón">
+            <span className="grid place-items-center w-14 h-14 rounded-full bg-jhs-500 text-white shadow-pop ring-4 ring-white"><ScanLine size={26} /></span>Escanear
+          </NavLink>
           <NavLink to="/campo/sync" className={tab}>
             <span className="relative"><RefreshCw size={22} />{pend > 0 && <span className="absolute -top-1.5 -right-2.5 bg-mort-500 text-white text-[10px] rounded-full min-w-[18px] h-[18px] grid place-items-center px-1">{pend}</span>}</span>
             Sincronizar

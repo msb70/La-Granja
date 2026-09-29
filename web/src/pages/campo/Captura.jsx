@@ -99,7 +99,7 @@ export default function Captura() {
         </div>
       </div>
 
-      <div className="px-4 -mt-3 space-y-4">
+      <div className="px-4 -mt-3 space-y-4 pb-10">
         <div className="card p-3 flex items-center justify-between gap-3">
           <span className="chip bg-carbon-800 text-white py-1 px-3"><Clock size={13} />Día de ciclo {dia} (automático)</span>
           <input type="date" className="input !w-auto !py-1.5 text-sm" value={fecha} min={minFecha} max={hoy()} onChange={e => e.target.value && setFecha(e.target.value)} aria-label="Fecha" />
@@ -158,8 +158,8 @@ export default function Captura() {
                     <YAxis tick={{ fontSize: 11 }} width={44} />
                     <Tooltip formatter={(v) => `${fmt(v)} g`} labelFormatter={(d) => `Día ${d}`} />
                     <Legend wrapperStyle={{ fontSize: 12 }} />
-                    <Line dataKey="estandar" name="Estándar" stroke="#27AAE1" strokeWidth={2.5} dot={false} />
-                    <Line dataKey="real" name="Real" stroke="#F37021" strokeWidth={2.5} connectNulls dot={{ r: 3 }} />
+                    <Line isAnimationActive={false} dataKey="estandar" name="Estándar" stroke="#27AAE1" strokeWidth={2.5} dot={false} />
+                    <Line isAnimationActive={false} dataKey="real" name="Real" stroke="#F37021" strokeWidth={2.5} connectNulls dot={{ r: 3 }} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -179,7 +179,7 @@ export default function Captura() {
           <Fotos value={fotos} onChange={setFotos} obligatorio={fotoObligatoria} />
         </div>
 
-        <div className="sticky bottom-20 pb-2">
+        <div className="sticky bottom-24 pb-2 z-10">
           <button className={`btn btn-big text-white ${m.bg} shadow-card`} onClick={guardar} disabled={guardando}><Save size={22} />Guardar captura</button>
         </div>
       </div>

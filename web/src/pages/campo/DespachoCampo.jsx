@@ -35,7 +35,7 @@ export default function DespachoCampo() {
           <div><h1 className="text-2xl font-extrabold">Salida de aves</h1><div className="text-sm opacity-90">Pesaje en báscula de granja · saldo {fmt(lote.resumen.saldo)} aves</div></div>
         </div>
       </div>
-      <div className="px-4 -mt-3 space-y-4">
+      <div className="px-4 -mt-3 space-y-4 pb-10">
         <div className="card p-5 space-y-4">
           <div className="grid grid-cols-2 gap-2">
             {[['planta', 'Planta beneficiadora', Factory], ['venta_pie', 'Venta en pie', Store]].map(([v, t, I]) => (
@@ -57,7 +57,7 @@ export default function DespachoCampo() {
           </div>
           <Campo label="Observaciones"><textarea className="input" rows={2} value={f.observaciones} onChange={set('observaciones')} /></Campo>
         </div>
-        <div className="sticky bottom-20 pb-2"><button className="btn btn-big bg-desp-500 text-white shadow-card" onClick={guardar}><Save size={22} />Registrar salida</button></div>
+        <div className="sticky bottom-24 pb-2 z-10"><button className="btn btn-big bg-desp-500 text-white shadow-card" onClick={guardar}><Save size={22} />Registrar salida</button></div>
       </div>
     </div>
   );
