@@ -4,16 +4,17 @@
   "description": "El Dorado · Granjas — Control de pollo de engorde (Grupo JHS)",
   "private": true,
   "type": "module",
-  "main": "server/index.js",
+  "main": "server.js",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "dev": "concurrently -k \"node --watch server/index.js\" \"vite\"",
+    "dev": "node --watch server.js & vite",
     "build": "vite build",
-    "start": "node server/index.js",
+    "start": "node server.js",
     "migrate": "node server/migrate.js",
-    "seed": "node server/seed.js"
+    "seed": "node server/seed.js",
+    "postinstall": "vite build"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
@@ -35,8 +36,5 @@
     "tailwindcss": "^3.4.19",
     "vite": "^8.3.1",
     "vite-plugin-pwa": "^1.3.0"
-  },
-  "devDependencies": {
-    "concurrently": "^10.0.5"
   }
 }
