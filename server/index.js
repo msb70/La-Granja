@@ -1,4 +1,4 @@
-import './db.js';
+import { q } from './db.js';
 import express from 'express';
 import compression from 'compression';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +15,12 @@ app.disable('x-powered-by');
 app.use(compression());
 app.use(express.json({ limit: '25mb' }));
 
-app.get('/api/salud', (req, res) => res.json({ ok: true, hora: new Date().toISOString() }));
+app.get('/api/salud', async (req, res) => {
+  const url = process.env.DATABASE_URL || '';
+  const info = { ok: true, hora: new Date().toISOString(), database_url_configurada: !!url, host_bd: url ? url.replace(/^.*@/, '').replace(/[/?].*$/, '') : null, jwt_configurado: !!process.env.JWT_SECRET };
+  try { await q('SELECT 1'); info.bd = 'conectada'; } catch (e) { info.ok = false; info.bd = 'error: ' + e.message; }
+  res.status(info.ok ? 200 : 503).json(info);
+});
 app.use('/api', api);
 
 if (existsSync(dist)) {
